@@ -1,5 +1,4 @@
 import Header from './Header';
-import './App.scss';
 import Content from './Content';
 import Footer from './Footer';
 
