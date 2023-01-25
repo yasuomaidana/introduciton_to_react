@@ -31,17 +31,36 @@ export default function Content() {
     setItems(listItems)
     localStorage.setItem('shoppinglist', JSON.stringify(listItems));
   }
-  return (
-    <main>
+
+  const drawList = () => {
+    return (
       <ul>
         {items.map((item) => (
           <li className="item" key={item.id}>
-            <input type="checkbox" checked={item.checked} onChange={() => handleCheck(item.id)} />
-            <label>{item.item}</label>
-            <FaTrashAlt onClick={() => handleDelete(item.id)} role="button" tabIndex="0"/>
+            <input
+              type="checkbox"
+              checked={item.checked}
+              onChange={() => handleCheck(item.id)}
+            />
+            <label
+              style={item.checked ? { textDecoration: "line-through" } : null}
+              onDoubleClick={() => handleCheck(item.id)}
+            >
+              {item.item}
+            </label>
+            <FaTrashAlt
+              onClick={() => handleDelete(item.id)}
+              role="button"
+              tabIndex="0"
+            />
           </li>
         ))}
       </ul>
+    );
+  };
+  return (
+    <main>
+      {items.length ? drawList():<p style={{marginTop:'2ren'}}>Empty</p>}
     </main>
   );
 }
