@@ -60,7 +60,7 @@ export default function Content() {
   };
   return (
     <main>
-      {items.length ? drawList():<p style={{marginTop:'2ren'}}>Empty</p>}
+      {items.length ? drawList():<p style={{marginTop:'2rem',textAlign:"center"}}>Ups your list is Empty!!! <br/> Like your soul</p>}
     </main>
   );
 }
