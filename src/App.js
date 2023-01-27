@@ -39,7 +39,7 @@ function App() {
     <div className="App">
       <Header title={"Groceries!!!"}/>
       <Content items = {items} handleCheck = {handleCheck} handleDelete={handleDelete}/>
-      <Footer/>
+      <Footer length={items.length}/>
     </div>
   );
 }

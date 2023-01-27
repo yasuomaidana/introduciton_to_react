@@ -1,6 +1,8 @@
-export default function Footer() {
+export default function Footer({length}) {
     const today = new Date();
   return (
-    <footer>Copyright &copy;{today.getFullYear()}</footer>
+    <footer>
+      <p>{length} List {length === 1 ? "item":"items"}</p>
+      <br/>Copyright &copy;{today.getFullYear()}</footer>
   )
 }
