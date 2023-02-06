@@ -3,11 +3,19 @@ import ReactDOM from 'react-dom/client';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter,Routes,Route, Navigate} from "react-router-dom";
+import { Color } from './Color';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />}/>
+        <Route path="/color" element={<Color />}/>
+        <Route path="*" element={<Navigate to="" replace />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
