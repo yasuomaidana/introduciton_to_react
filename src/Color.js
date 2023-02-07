@@ -1,7 +1,8 @@
 import React from 'react'
+import './Color.scss'
 
 export const Color = () => {
   return (
-    <div>Color</div>
+    <div className='Color'>Color</div>
   )
 }
