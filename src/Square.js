@@ -1,7 +1,15 @@
+import colorNames from 'colornames'
 import React from 'react'
 
-export const Square = () => {
+export const Square = ({colorValue}) => {
   return (
-    <div><h2>Square</h2></div>
+    <section className='square' style={{backgroundColor:colorValue}}>
+        <p>{colorValue ? colorValue : "There is no color 😔"}</p>
+        <p>{colorValue ? colorNames(colorValue) : null}</p>
+    </section>
   )
+}
+
+Square.defaultProps = {
+    colorValue: "There is no color 😔"
 }
