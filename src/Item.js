@@ -8,13 +8,15 @@ export const Item = ({item,handleCheck,handleDelete}) => {
               type="checkbox"
               checked={item.checked}
               onChange={() => handleCheck(item.id)}
+              name={"item"+item.item} id={"item"+item.item}
             />
-            <label
+            <p
               style={item.checked ? { textDecoration: "line-through" } : null}
               onDoubleClick={() => handleCheck(item.id)}
+              htmlFor={"item"+item.item}
             >
               {item.item}
-            </label>
+            </p>
             <FaTrashAlt
               onClick={() => handleDelete(item.id)}
               role="button"

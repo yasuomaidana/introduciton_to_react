@@ -1,9 +1,11 @@
 import Header from './Header';
 import Content from './Content';
 import Footer from './Footer';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddItem from './AddItem';
 import { SearchItem } from './SearchItem';
+import './index.scss';
+
 
 function App() {
 
@@ -11,10 +13,13 @@ function App() {
   const [newItem, setNewItem] = useState('')
   const [search, setSearch] = useState('')
 
+  useEffect(() => console.log('render'),[items])
+
   const addItem = item =>{
     const id = items.length ? items[items.length-1].id+1 : 1;
     const myNewItem = {id,checked:false,item}
     const listItems = [...items, myNewItem]
+    console.log(item)
     setItems(listItems)
     localStorage.setItem('shoppinglist', JSON.stringify(listItems));
    }
