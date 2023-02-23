@@ -15,7 +15,6 @@ function App() {
 
   useEffect(() => {
     setItems(JSON.parse(localStorage.getItem('shoppinglist'))||[])
-    console.log("After loading")
   },[])
   
 
@@ -23,7 +22,6 @@ function App() {
     const id = items.length ? items[items.length-1].id+1 : 1;
     const myNewItem = {id,checked:false,item}
     const listItems = [...items, myNewItem]
-    console.log(item)
     setItems(listItems)
     localStorage.setItem('shoppinglist', JSON.stringify(listItems));
    }
