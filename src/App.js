@@ -9,11 +9,15 @@ import './index.scss';
 
 function App() {
 
-  const [items, setItems] = useState(localStorage.getItem('shoppinglist')=== null? []: JSON.parse(localStorage.getItem('shoppinglist')));
+  const [items, setItems] = useState([]);
   const [newItem, setNewItem] = useState('')
   const [search, setSearch] = useState('')
 
-  useEffect(() => console.log('render'),[items])
+  useEffect(() => {
+    setItems(JSON.parse(localStorage.getItem('shoppinglist'))||[])
+    console.log("After loading")
+  },[])
+  
 
   const addItem = item =>{
     const id = items.length ? items[items.length-1].id+1 : 1;
