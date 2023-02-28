@@ -9,13 +9,28 @@ import './index.scss';
 
 function App() {
 
+  const API_URL = 'http://localhost:3500/items'
   const [items, setItems] = useState([]);
   const [newItem, setNewItem] = useState('')
   const [search, setSearch] = useState('')
 
-  useEffect(() => {
-    setItems(JSON.parse(localStorage.getItem('shoppinglist'))||[])
+  useEffect(()=>{
+    const fetchItems = async () =>{
+      try{
+        const response = await fetch(API_URL);
+        const listItems = await response.json();
+        console.log("loading from serv", listItems);
+        setItems(listItems);
+      } catch(err){
+        console.log(err.stack);
+      }
+    }
+    fetchItems();
   },[])
+
+  useEffect(() => {
+    localStorage.setItem('shoppinglist', JSON.stringify(items));
+  },[items])
   
 
   const addItem = item =>{
@@ -23,7 +38,6 @@ function App() {
     const myNewItem = {id,checked:false,item}
     const listItems = [...items, myNewItem]
     setItems(listItems)
-    localStorage.setItem('shoppinglist', JSON.stringify(listItems));
    }
 
   const handleSubmit = (e) => {
@@ -35,13 +49,11 @@ function App() {
   const handleCheck = (id) => {
     const listItems = items.map( item => item.id === id ? { ...item, checked: !item.checked} : item);
     setItems(listItems);
-    localStorage.setItem('shoppinglist', JSON.stringify(listItems));
   }
   
   const handleDelete = (id) =>{
     const listItems = items.filter(item => item.id !== id)
     setItems(listItems)
-    localStorage.setItem('shoppinglist', JSON.stringify(listItems));
   }
   
   return (
