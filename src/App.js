@@ -4,25 +4,28 @@ import Footer from './Footer';
 import { useState, useEffect } from "react";
 import AddItem from './AddItem';
 import { SearchItem } from './SearchItem';
-import './index.scss';
 
 
 function App() {
 
-  const API_URL = 'http://localhost:3500/items'
+  const API_URL = 'http://localhost:3500/items';
   const [items, setItems] = useState([]);
-  const [newItem, setNewItem] = useState('')
-  const [search, setSearch] = useState('')
+  const [newItem, setNewItem] = useState('');
+  const [search, setSearch] = useState('');
+  const [fetchError, setFetchError] = useState(null);
 
   useEffect(()=>{
     const fetchItems = async () =>{
       try{
         const response = await fetch(API_URL);
+        if (!response.ok) throw Error('Did not received expected data')
         const listItems = await response.json();
         console.log("loading from serv", listItems);
         setItems(listItems);
+        setFetchError(null);
       } catch(err){
         console.log(err.stack);
+        setFetchError(err.message);
       }
     }
     fetchItems();
@@ -61,7 +64,10 @@ function App() {
       <Header title={"Groceries!!!"}/>
       <AddItem newItem = {newItem} setNewItem = {setNewItem} handleSubmit = {handleSubmit}/>
       <SearchItem search={search} setSearch={setSearch}/>
-      <Content items = {items.filter(item=> item.item.toLowerCase().includes(search.toLowerCase()))} handleCheck = {handleCheck} handleDelete={handleDelete}/>
+      <main>
+        {fetchError && <p style={{color: "red"}}>{`Error : ${fetchError}`}</p>}
+        <Content items = {items.filter(item=> item.item.toLowerCase().includes(search.toLowerCase()))} handleCheck = {handleCheck} handleDelete={handleDelete}/>
+      </main>
       <Footer length={items.length}/>
     </div>
   );
