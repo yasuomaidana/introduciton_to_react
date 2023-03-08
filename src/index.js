@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter,Routes,Route, Navigate} from "react-router-dom";
 import { Color } from './Color';
 import './index.scss';
-import FetchData from './FetchData';
+import FetchData from './fetch_data_component/FetchData';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
