@@ -10,18 +10,22 @@ const FetchData = () => {
 
   useEffect(() =>{
     const itemsQuery = async () =>{
+      
         try{
-            const data = await fetch(`${API_URL}${reqType}`).then(response=>response.json());        
-            setItems(data);
+            const query = await fetch(`${API_URL}${reqType}`);
+            const data = await query.json();
+            return data;
         }catch(err){
-            console.log(err)
+            console.log(err);
         }
     }
-    itemsQuery();
+    itemsQuery().then(r=>setItems(r)).finally();
   }, [reqType])
 
-  useEffect(()=>{console.log(items)},[items])
-  return <div className="FetchDataApp"><QueryForm/></div>;
+  useEffect(()=>{
+    console.log("enters",items)
+  },[items])
+  return <div className="FetchDataApp"><QueryForm reqType ={reqType} setReqType={setReqType}/></div>;
 };
 
 export default FetchData;
