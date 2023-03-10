@@ -1,8 +1,12 @@
 import React from 'react'
 
-const Button = ({text, setReqType}) => {
+const Button = ({text, reqType, setReqType}) => {
+
+  const click = (e,text)=>{
+    setReqType(text.toLowerCase());
+  }
   return (
-    <button>{text}</button>
+    <button onClick={(e) => click(e,text)}>{text}</button>
   )
 }
 
