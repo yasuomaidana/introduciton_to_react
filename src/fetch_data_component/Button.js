@@ -6,7 +6,7 @@ const Button = ({text, reqType, setReqType}) => {
     setReqType(text.toLowerCase());
   }
   return (
-    <button onClick={(e) => click(e,text)}>{text}</button>
+    <button className={text.toLowerCase() === reqType? "selected":null} onClick={(e) => click(e,text)} type='button'>{text}</button>
   )
 }
 
