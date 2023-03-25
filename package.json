@@ -15,11 +15,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "s": "concurrently \"npm run server\" \"npm run start\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server":"npx json-server -p 3500 -w data/db.json"
+    "server": "npx json-server -p 3500 -w data/db.json"
   },
   "eslintConfig": {
     "extends": [
@@ -40,7 +41,8 @@
     ]
   },
   "devDependencies": {
-    "sass": "^1.57.1",
-    "json-server": "^0.17.2"
+    "concurrently": "^7.6.0",
+    "json-server": "^0.17.2",
+    "sass": "^1.57.1"
   }
 }
