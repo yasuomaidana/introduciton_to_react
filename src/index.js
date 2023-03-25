@@ -6,6 +6,7 @@ import {BrowserRouter,Routes,Route, Navigate} from "react-router-dom";
 import { Color } from './Color';
 import './index.scss';
 import FetchData from './fetch_data_component/FetchData';
+import Blog from './blog/Blog';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,6 +16,7 @@ root.render(
         <Route path="/" element={<App />}/>
         <Route path="/color" element={<Color />}/>
         <Route path="/fetch" element={<FetchData />}/>
+        <Route path="/blog" element={<Blog />}/>
         <Route path="*" element={<Navigate to="" replace />} />
       </Routes>
     </BrowserRouter>
