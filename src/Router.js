@@ -19,15 +19,16 @@ const browserRouter = createBrowserRouter(createRoutesFromElements(
             <Route path="/" element={<App />}/>
             <Route path="color">
               <Route path="" element={<Color/>}></Route>
-              <Route path="whatever" element={<Blog/>}/>
+              
             </Route>
             <Route path="/fetch" element={<FetchData />}/>
             <Route path="/blog">
-              <Route path="" element={<Home/>}/>
+              <Route path="" element={<Blog/>}/>
               <Route path="post">
                 <Route path="" element={<Post/>}/>
                 <Route path=":id" element={<PostPage/>}/>
               </Route>
+              <Route path="*" element={<Home/>}/>
             </Route>
             <Route path="*" element={<Navigate to="" replace />} />
         </Route>
